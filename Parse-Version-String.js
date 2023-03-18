@@ -9,13 +9,9 @@ function parseVersion(str)
     const min = parseInt(arr[1]) || 0;
     const rest = parseInt(arr[2]) || 0;
     // console.log(arr[0], arr[1], arr[2], rest.toString().length);
-    const label = str.substring(maj.toString().length + min.toString().length + rest.toString().length + 3);
-    return {
-        major: maj,
-        minor: min,
-        build: rest,
-        label: label
-    }
+    const label = str.substring(maj.toString().length + min.toString().length + rest.toString().length + 2);
+    const newVersion = maj.toString() + '.' + min.toString() + '.' + (rest + 1).toString() + label;
+    return newVersion;
 }
 
 function test() {
@@ -26,4 +22,6 @@ function test() {
     console.log(parsed, JSON.stringify(parsed) === JSON.stringify(expected));
 }
 
-test();
+const pjson = require('./package.json').version;
+const newVersion = parseVersion(pjson);
+console.log(newVersion);
