@@ -4,7 +4,7 @@ description: 'Updates manifest or package version'
 outputs:
   new_version:
     description: "New manifest version"
-    value: ${{ steps.new_version_generation_step.outputs.version }}
+    value: ${{ steps.new_version_generation_step.outputs.VERSION }}
 
 runs:
   using: "composite"
@@ -17,7 +17,7 @@ runs:
       id: new_version_generation_step
       run: |
         curl -L -o Parse-Version-String.js https://raw.githubusercontent.com/AkMo3/Cytoscape-Github-Actions/main/Parse-Version-String.js
-        export VERSION="$(node.exe Parse-Version-String.js)" 
+        echo "VERSION=$(node.exe Parse-Version-String.js)" >> $GITHUB_OUTPUT
       shell: bash
     - name: Set GitHub Action Path
       run: echo "${{ github.action_path }}" >> $GITHUB_PATH
