@@ -15,7 +15,7 @@ runs:
         curl -L -o Parse-Version-String.js https://raw.githubusercontent.com/AkMo3/Cytoscape-Github-Actions/main/Parse-Version-String.js
         export VERSION=$(node Parse-Version-String.js)
         echo "VERSION=$VERSION"
-        echo "$VERSION" >> $GITHUB_OUTPUT
+        echo "::set-output $VERSION" >> $GITHUB_OUTPUT
       shell: bash
     - name: Set GitHub Action Path
       run: echo "${{ github.action_path }}" >> $GITHUB_PATH
