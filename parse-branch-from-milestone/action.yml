@@ -7,7 +7,7 @@ inputs:
     required: true
 
 outputs:
-  new_version:
+  branch:
     description: "Branch To Check Out"
     value: ${{ steps.get_patch_branch_from_milestone.outputs.branch }}
 
