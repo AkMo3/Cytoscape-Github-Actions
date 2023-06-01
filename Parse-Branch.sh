@@ -1,5 +1,5 @@
 #!/bin/bash
-#Example for bash split string by Symbol (comma)  
+
       
 entry=$1 #reading string value  
       
