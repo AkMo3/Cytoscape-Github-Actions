@@ -20,7 +20,7 @@ runs:
         milestone=${{ inputs.milestone }}
         curl -L -o Parse-Branch.sh https://raw.githubusercontent.com/AkMo3/Cytoscape-Github-Actions/main/Parse-Branch.sh
         chmod +rx ./Parse-Branch.sh
-        echo "branch=$(./Parse-Branch.sh 3.10.3)" >> $GITHUB_OUTPUT
+        echo "branch=$(./Parse-Branch.sh $milestone)" >> $GITHUB_OUTPUT
       shell: bash
     - name: Set GitHub Action Path
       run: echo "${{ github.action_path }}" >> $GITHUB_PATH
