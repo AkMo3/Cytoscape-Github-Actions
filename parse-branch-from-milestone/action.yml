@@ -1,0 +1,27 @@
+name: Parse Patch Branch From Milestone
+description: 'Updates manifest or package version'
+
+inputs:
+  milestone:
+    description: 'Milestone Label'
+    required: true
+
+outputs:
+  new_version:
+    description: "Branch To Check Out"
+    value: ${{ steps.new_version_generation_step.outputs.branch }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get Patch Branch
+      id: get_patch_branch_from_milestone
+      run: |
+        milestone=${{ inputs.milestone }}
+        curl -L -o Parse-Branch.sh https://raw.githubusercontent.com/AkMo3/Cytoscape-Github-Actions/main/Parse-Branch.sh
+        chmod +rx ./Parse-Branch.sh
+        echo "branch=$(./Parse-Version-String.js $milestone)" >> $GITHUB_OUTPUT
+      shell: bash
+    - name: Set GitHub Action Path
+      run: echo "${{ github.action_path }}" >> $GITHUB_PATH
+      shell: bash
