@@ -9,7 +9,7 @@ inputs:
 outputs:
   new_version:
     description: "Branch To Check Out"
-    value: ${{ steps.new_version_generation_step.outputs.branch }}
+    value: ${{ steps.get_patch_branch_from_milestone.outputs.branch }}
 
 runs:
   using: "composite"
